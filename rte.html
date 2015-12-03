@@ -18,8 +18,8 @@
           <strike class="textarea-i-strike">a</strike>
         </button>
 
-        <button class="btn" type="button" data-divbtn="formatBlock" title="Heading" data-val="h3">
-          <span class="textarea-i-h">H</span>
+        <button class="btn" type="button" ng-click='runCommand("formatBlock")' title="Heading">
+          <span class="textarea-i-h">{{h}}</span>
         </button>
 
         <button class="btn" type="button" ng-click='runCommand("insertUnorderedList")' title="Unordered-List">
@@ -30,7 +30,7 @@
           <span class="textarea-i-ul fa fa-list-ol"></span>
         </button>
 
-        <button class="btn" type="button" data-divbtn="hiliteColor" title="Highlite" data-val="#FFFBCC">
+        <button class="btn" type="button" ng-click='runCommand("hiliteColor")' title="Highlite">
           <span class="textarea-i-hilite fa fa-eyedropper" style="background-color:#fffbcc;"></span>
         </button>
 
