@@ -27,11 +27,10 @@ angular.module('main', [])
 		// copy the passed content to the text-area
 		text_area.html(scope.content);
 
-		scope.runCommand = function(command) {
+		scope.runCommand = function(command, value) {
 			text_area[0].focus();
 			
 			if (command === 'hiliteColor') {
-				value = '#FFFBCC';
 				hilite_state = !hilite_state;
 
 				if (!hilite_state)
