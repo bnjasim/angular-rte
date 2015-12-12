@@ -67,7 +67,7 @@
 
     </div>
                   
-    <div class="btn-group float-right">  
+    <div class="btn-group float-right" uib-dropdown>  
 
         <button class="btn" type="button" data-divbtn="paint" title="Paint">
           <div class="textarea-i-square fa fa-paint-brush"></div>
@@ -80,23 +80,29 @@
         <button class="btn" type="button" data-divbtn="icon" title="Check">
           <div class="textarea-i-check fa fa-check-square-o"></div>
         </button>
-                 
-        
-          <span type="button" class="btn btn-default show-all-icons-button dropdown-toggle" data-toggle="dropdown">
-            <div class="fa fa-caret-down"></div> 
-          </span>
+       
+	   
+	      <span type="button" uib-dropdown-toggle class="btn btn-default dropdown-toggle">
+	        <div class="fa fa-caret-down"></div> 
+	      </span>
 
-          <ul class="dropdown-menu show-all-icons-dropdown-menu dropdown-menu-right" role="menu">
-            <button class="btn" type="button" data-divbtn="icon" title="To-Do">
-              <div class="textarea-i-square fa fa-square-o"></div>
+          <ul class="uib-dropdown-menu dropdown-menu-right all-icons-dropdown-menu" role="menu">
+            
+            <button class="btn" type="button" data-divbtn="icon" title="Smiley">
+              <div class="textarea-i-smile fa fa-smile-o"></div>
             </button>
-        
-            <button class="btn" type="button" data-divbtn="icon" title="Check">
-              <div class="textarea-i-check fa fa-check-square-o"></div>
+
+
+            <button class="btn" type="button" data-divbtn="icon" title="Heart">
+              <div class="textarea-i-heart fa fa-heart"></div>
             </button>
-                 
+
             <button class="btn" type="button" data-divbtn="icon" title="Bug">
               <div class="textarea-i-bug fa fa-bug"></div>
+            </button>
+
+            <button class="btn" type="button" data-divbtn="icon" title="Question">
+              <div class="textarea-i-a fa fa-asterisk"></div>
             </button>
 
             <button class="btn" type="button" data-divbtn="icon" title="Remove">
@@ -107,6 +113,10 @@
               <div class="textarea-i-thumbs-up fa fa-thumbs-o-up"></div>
             </button>
 
+			<button class="btn" type="button" data-divbtn="icon" title="Flask">
+              <div class="textarea-i-phone fa fa-flask"></div>
+            </button>
+
             <button class="btn" type="button" data-divbtn="icon" title="Thumbs down">
               <div class="textarea-i-thumbs-down fa fa-thumbs-o-down"></div>
             </button>            
@@ -115,9 +125,6 @@
               <div class="textarea-i-star fa fa-star"></div>
             </button>            
 
-            <button class="btn" type="button" data-divbtn="icon" title="Heart">
-              <div class="textarea-i-heart fa fa-heart"></div>
-            </button>
 
             <button class="btn" type="button" data-divbtn="icon" title="Hand Right">
               <div class="textarea-i-hand fa fa-hand-o-right"></div>
@@ -152,7 +159,7 @@
             </button>
 
             <button class="btn" type="button" data-divbtn="icon" title="Bell">
-              <div class="textarea-i-star fa fa-bell"></div>
+              <div class="textarea-i-star fa fa-bullhorn"></div>
             </button>
 
             <button class="btn" type="button" data-divbtn="icon" title="Call">
@@ -161,6 +168,10 @@
 
            <button class="btn" type="button" data-divbtn="icon" title="Music">
               <div class="textarea-i-music fa fa-music"></div>
+            </button>
+
+            <button class="btn" type="button" data-divbtn="icon" title="Book">
+              <div class="textarea-i-b fa fa-book"></div>
             </button>
 
             <button class="btn" type="button" data-divbtn="icon" title="Message">
@@ -172,13 +183,10 @@
             </button>
 
             <button class="btn" type="button" data-divbtn="icon" title="Question">
-              <div class="textarea-i-question fa fa-question-circle"></div>
+              <div class="textarea-i-question fa fa-question"></div>
             </button>
 
-            <button class="btn" type="button" data-divbtn="icon" title="Flask">
-              <div class="textarea-i-phone fa fa-flask"></div>
-            </button>
-
+            
             <button class="btn" type="button" data-divbtn="icon" title="Trophy">
               <div class="textarea-i-star fa fa-trophy"></div>
             </button>
@@ -187,7 +195,7 @@
               <div class="textarea-i-play fa fa-futbol-o"></div>
             </button>
           </ul> 
-
+       
     </div>
 
   </div>   

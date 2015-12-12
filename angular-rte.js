@@ -1,4 +1,4 @@
-angular.module('main', [])
+angular.module('main', ['ui.bootstrap'])
 
 .directive('angularRte', function() {
   return {

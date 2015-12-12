@@ -78,7 +78,7 @@
 [class*=" textarea-i-"] {
     display: inline-block;
     width: 20px;
-    height: 20px;
+    height: 0px; /* don't know how it works! To avoid pick icon arrow dropdown button & {} being small */
     margin-top: 1px;
     
     vertical-align: text-top;
@@ -91,6 +91,9 @@
 }
 .textarea-i-bug {
   color: #8E0000;
+}
+.textarea-i-smile {
+  color: orange;
 }
 .textarea-i-remove {
   color: #8E0000;
@@ -127,13 +130,13 @@ hr{
   
 }
 
-.show-all-icons-dropdown-menu {
+.all-icons-dropdown-menu {
   background-color: #ffffe5; 
   padding-left: 12px;
-  width: 220px;
+  width: 210px;
 }
 
-.show-all-icons-dropdown-menu .btn{
+.all-icons-dropdown-menu .btn{
   border: 0px !important;
 }
 
