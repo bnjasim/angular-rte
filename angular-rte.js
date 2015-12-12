@@ -80,6 +80,18 @@ angular.module('main', [])
 
 			}
 
+			// Extra br at the end
+			if (command === 'br') {
+				text_area[0].appendChild(document.createElement('br'));
+				var range = document.createRange();
+				var sel = window.getSelection();
+				var last_child = text_area[0].childNodes;
+				range.setStart(last_child[last_child.length-1], 0);
+				range.collapse(true);
+				sel.removeAllRanges();
+				sel.addRange(range);
+			}
+
 			document.execCommand(command, false, value);
 			text_area[0].focus();
 		}

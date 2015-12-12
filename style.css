@@ -14,7 +14,7 @@
 
 @media(min-width: 776px) { /* for large devices fix width */
 	.textarea-outer {
-		width: 600px;
+		width: 700px;
 		margin: auto;
 	}
 }
