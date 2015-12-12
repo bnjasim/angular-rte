@@ -43,6 +43,35 @@ angular.module('main', ['ui.bootstrap'])
 		    }
 		});
 
+		scope.insertImage = function() {
+			var imageURL = window.prompt('Image URL');
+
+			if (imageURL) {
+				//text_area[0].focus();	
+				//document.execCommand('insertImage', false, imageURL);
+				text_area[0].focus();	
+				var selection = window.getSelection();
+				range = selection.getRangeAt(0);
+				// the text-area shouldn't be empty, otherwise endContainer is content-editable
+				// nodeType = 1 for ELEMENT_NODE, = 3 for TEXT_NODE etc.	
+				if (!(range.endContainer.nodeType===1 && range.endContainer.getAttribute('class') === 'textarea-div')) 
+					// insert code area not in the middle of some text, but next line may be
+					range.setStartAfter(range.endContainer);
+					
+				var image_node = document.createElement('img');
+				image_node.setAttribute('class', 'inserted-image');
+				image_node.setAttribute('src', imageURL);
+
+				range.insertNode(image_node);
+	
+				var image_node_after = document.createElement('br');
+				range.setStartAfter(image_node);
+				range.collapse(true);
+				range.insertNode(image_node_after);
+				
+			}
+		}
+
 		scope.runCommand = function(command, value) {
 			text_area[0].focus();
 			
@@ -169,7 +198,7 @@ angular.module('main', ['ui.bootstrap'])
 				}
 			} 
 
-				document.execCommand(command, false, value);
+			document.execCommand(command, false, value);
 			text_area[0].focus();
 		}
 

@@ -20,7 +20,8 @@
 }
 
 .textarea-div {
-    height: 240px;
+    min-height: 240px;
+    max-height: 600px;
     padding: 4px 6px 4px 6px;
     
     background-color: #ffffff;
@@ -86,7 +87,7 @@
 }
 
 /* The individual RTA icons */
-.textarea-i-check {
+.textarea-i-check-square-o {
   color: green;
 }
 .textarea-i-bug {
@@ -130,7 +131,8 @@ hr{
 
 .inserted-image {
   display: block;
-  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
   
 }
 

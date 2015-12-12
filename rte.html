@@ -69,12 +69,16 @@
                   
     <div class="btn-group float-right" uib-dropdown>  
 
+    	<button class="btn" type="button" ng-click='insertImage()' title="Image">
+          <div class="textarea-i-image fa fa-image"></div>
+        </button>
+
         <button class="btn" type="button" data-divbtn="paint" title="Paint">
-          <div class="textarea-i-square fa fa-paint-brush"></div>
+          <div class="textarea-i-square" style="width:30px;margin-top:-1px">Paint</div>
         </button>
 
         <button class="btn" type="button" ng-click='runCommand("icon", "check-square-o")' title="Check">
-          <div class="textarea-i-check fa fa-check-square-o"></div>
+          <div class="textarea-i-check-square-o fa fa-check-square-o"></div>
         </button>
        
 	   
