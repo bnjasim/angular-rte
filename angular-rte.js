@@ -7,9 +7,7 @@ angular.module('main', [])
 	scope: {content: '=textContent'},
 	templateUrl: 'rte.html',
 	controller: ['$scope', function($scope) {
-		$scope.content = 'Controller!';
-		console.log($scope.content);
-
+	
 		
 	}],
 
@@ -26,6 +24,25 @@ angular.module('main', [])
 		var icon_area = element.children().eq(0);
 		// copy the passed content to the text-area
 		text_area.html(scope.content);
+
+		text_area.on('keydown', function(e) {
+		    var TABKEY = 9;
+		    if(e.keyCode == TABKEY) {
+		        if(e.preventDefault) {
+		            e.preventDefault();
+		        }
+
+		        var selection = window.getSelection();
+				range = selection.getRangeAt(0);
+				range.collapse();
+				var node_span = document.createElement('span');
+				node_span.innerHTML = '&nbsp;&nbsp;';
+				range.insertNode(node_span);
+				range.setStartAfter(node_span);
+				range.collapse();
+		        return false;
+		    }
+		});
 
 		scope.runCommand = function(command, value) {
 			text_area[0].focus();
