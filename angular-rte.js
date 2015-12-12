@@ -79,22 +79,32 @@ angular.module('main', [])
 				var selection = window.getSelection();
 				range = selection.getRangeAt(0);
 				// the text-area shouldn't be empty, otherwise endContainer is content-editable
-				// nodeType = 1 for ELEMENT_NODE, = 3 for TEXT_NODE etc.
-				if (range.endContainer.nodeType===1 && range.endContainer.getAttribute('class') !== 'textarea-div')
+				// nodeType = 1 for ELEMENT_NODE, = 3 for TEXT_NODE etc.	
+				if (!(range.endContainer.nodeType===1 && range.endContainer.getAttribute('class') === 'textarea-div')) 
+					// insert code area not in the middle of some text, but next line may be
 					range.setStartAfter(range.endContainer);
-
+					
 				var code_node = document.createElement('pre');
 				//code_node.setAttribute('class', 'code');
 				var code_node_inner = document.createElement('div');
-				code_node_inner.innerText = '\n';
+				code_node_inner.innerHTML = '<br/>';
 				code_node.appendChild(code_node_inner);
 				range.insertNode(code_node);
+
+				
 				var code_node_after = document.createElement('br');
 				range.setStartAfter(code_node);
 				range.collapse();
 				range.insertNode(code_node_after);
-				//document.execCommand('defaultParagraphSeparator', false, 'p');
 
+				//range.setStart(code_node_inner, 0);
+				//range.setEnd(code_node_inner, 0);
+				//range.selectNode(code_node_inner);
+				//range.collapse();
+				//selection.removeAllRanges();
+				//selection.addRange(range);
+				//document.execCommand('defaultParagraphSeparator', false, 'p');
+				
 			}
 
 			// Extra br at the end
