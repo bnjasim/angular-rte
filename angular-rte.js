@@ -109,6 +109,22 @@ angular.module('main', [])
 				sel.addRange(range);
 			}
 
+			if (command === 'link') {
+				var sel = window.getSelection();
+				if (sel.getRangeAt && sel.rangeCount) {
+					range = sel.getRangeAt(0);
+					if (range.startContainer === range.endContainer) {
+						command = 'createLink';
+						value = range.toString();
+						// add http if not present
+						if (value.indexOf('http') !== 0)
+							value = 'http://' + value;
+						if (value.search(/(?:www.)?[a-z0-9A-Z]+\.[a-zA-Z]+/) < 0)
+							value = '';
+					}
+				}
+			}
+
 			document.execCommand(command, false, value);
 			text_area[0].focus();
 		}
