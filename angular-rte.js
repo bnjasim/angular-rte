@@ -7,7 +7,6 @@ angular.module('main', ['ui.bootstrap'])
 	scope: {content: '=textContent'},
 	templateUrl: 'rte.html',
 	controller: ['$scope', function($scope) {
-	
 		
 	}],
 
@@ -90,19 +89,20 @@ angular.module('main', ['ui.bootstrap'])
 				code_node_inner.innerHTML = '<br/>';
 				code_node.appendChild(code_node_inner);
 				range.insertNode(code_node);
-
-				
+	
 				var code_node_after = document.createElement('br');
 				range.setStartAfter(code_node);
-				range.collapse();
+				range.collapse(true);
 				range.insertNode(code_node_after);
 
-				//range.setStart(code_node_inner, 0);
+				range.setStart(code_node_inner, 0);
 				//range.setEnd(code_node_inner, 0);
 				//range.selectNode(code_node_inner);
-				//range.collapse();
-				//selection.removeAllRanges();
-				//selection.addRange(range);
+				range.collapse(true);
+
+				range = range.cloneRange();
+		      	selection.removeAllRanges();
+		      	selection.addRange(range);
 				//document.execCommand('defaultParagraphSeparator', false, 'p');
 				
 			}
@@ -135,7 +135,41 @@ angular.module('main', ['ui.bootstrap'])
 				}
 			}
 
-			document.execCommand(command, false, value);
+			if (command === 'icon') {
+				var sel = window.getSelection();
+				var range;
+
+				var node = document.createElement('div');
+				node.setAttribute('class', 'inserted-icon');
+				node.innerHTML = '<div class="textarea-i-'+ value +' fa fa-'+value+'"></div>'
+	
+				if (sel.getRangeAt && sel.rangeCount) {
+					var textNode1 = document.createElement('span');
+					textNode1.innerHTML = '&nbsp;';
+					var textNode2 = document.createElement('span');
+					textNode2.innerHTML = '&nbsp;';
+
+					range = sel.getRangeAt(0);
+	  				//range.deleteContents();
+	  				range.collapse(false); // false collapse to the end, true to the start
+	  				range.insertNode(textNode1);
+	  				range.setEndAfter(textNode1);
+	  				range.collapse(false);
+	  				range.insertNode(node);
+	  				range.setEndAfter(node);
+	  				range.collapse(false);
+	  				range.insertNode(textNode2);
+	  				range.setEndAfter(textNode2);
+	  				range.collapse(false); // collapse to end
+	  				// removing the cloning creates some problems
+	  				range = range.cloneRange();
+		      		sel.removeAllRanges();
+		      		sel.addRange(range);
+
+				}
+			} 
+
+				document.execCommand(command, false, value);
 			text_area[0].focus();
 		}
 
