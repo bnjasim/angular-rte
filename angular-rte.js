@@ -56,6 +56,30 @@ angular.module('main', [])
 
 			}
 
+			if (command === 'code') {
+				//command = 'formatBlock';
+				//value = 'pre';
+				var selection = window.getSelection();
+				range = selection.getRangeAt(0);
+				// the text-area shouldn't be empty, otherwise endContainer is content-editable
+				// nodeType = 1 for ELEMENT_NODE, = 3 for TEXT_NODE etc.
+				if (range.endContainer.nodeType===1 && range.endContainer.getAttribute('class') !== 'textarea-div')
+					range.setStartAfter(range.endContainer);
+
+				var code_node = document.createElement('pre');
+				//code_node.setAttribute('class', 'code');
+				var code_node_inner = document.createElement('div');
+				code_node_inner.innerText = '\n';
+				code_node.appendChild(code_node_inner);
+				range.insertNode(code_node);
+				var code_node_after = document.createElement('br');
+				range.setStartAfter(code_node);
+				range.collapse();
+				range.insertNode(code_node_after);
+				//document.execCommand('defaultParagraphSeparator', false, 'p');
+
+			}
+
 			document.execCommand(command, false, value);
 			text_area[0].focus();
 		}
