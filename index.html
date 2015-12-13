@@ -15,6 +15,9 @@
 <!-- Directive -->
 <angular-rte text-content="content"></angular-rte>
 
+<div class="textarea-outer" ng-bind-html="content | sanitize">
+</div>
+
 </body>
 <script type="text/javascript" src="angular.min.js"></script>
 <script type="text/javascript" src="ui-bootstrap.js"></script>

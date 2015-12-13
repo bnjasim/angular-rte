@@ -1,5 +1,11 @@
 angular.module('main', ['ui.bootstrap'])
 
+.filter("sanitize", ['$sce', function($sce) {
+  return function(htmlCode){
+    return $sce.trustAsHtml(htmlCode);
+  }
+}])
+
 .directive('angularRte', function() {
   return {
 	restrict: 'E',
@@ -42,6 +48,13 @@ angular.module('main', ['ui.bootstrap'])
 		        return false;
 		    }
 		});
+
+		// on clicking OK button
+		scope.copyContent = function() {
+			
+			scope.content = text_area.html();
+				
+		}
 
 		scope.insertImage = function() {
 			var imageURL = window.prompt('Image URL');

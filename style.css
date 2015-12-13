@@ -159,3 +159,12 @@ hr{
 	white-space: pre-wrap;
 	font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+.textarea-footer {
+	margin-top: 3px;
+	overflow: hidden;
+}
+
+.textarea-footer button {
+	float: right;
+}
