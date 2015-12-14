@@ -1,4 +1,4 @@
-angular.module('main', ['ui.bootstrap'])
+angular.module('hummuse.texteditor', ['ui.bootstrap', 'hummuse.paint'])
 
 .filter("sanitize", ['$sce', function($sce) {
   return function(htmlCode){

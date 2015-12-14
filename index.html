@@ -9,10 +9,11 @@
   <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 
-<body ng-app="main">
+<body ng-app="hummuse.texteditor">
 <div class="heading"><h2>Angular RTE (Rich Text Editor)</h2></div>
 
 <!-- Directive -->
+<paintangular></paintangular>
 <angular-rte text-content="content"></angular-rte>
 
 <div class="textarea-outer" ng-bind-html="content | sanitize">
@@ -21,5 +22,6 @@
 </body>
 <script type="text/javascript" src="angular.min.js"></script>
 <script type="text/javascript" src="ui-bootstrap.js"></script>
+<script type="text/javascript" src="paintangular.js"></script>
 <script type="text/javascript" src="angular-rte.js"></script>
 </html>
