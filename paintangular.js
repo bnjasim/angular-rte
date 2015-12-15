@@ -1,6 +1,6 @@
 angular.module('hummuse.paint', [])
 
-.directive('paintangular', function() {
+.directive('paintangular', function(paintService) {
 	
 	return {
 		restrict: 'E',
@@ -64,6 +64,20 @@ angular.module('hummuse.paint', [])
 			}
 		}],
 
+		link: function(scope, element, attrs) {
+			// just for hiding and showing the paint 
+			scope.$watch(paintService.getStatus, function(val) {
+				console.log('Paint status changed' + val)
+				if (val) 
+					element.css('display', 'block');
+
+			})
+
+			// hide the paint now after getting the width
+			element.css('display', 'none'); // link of parent is executed after link of child
+
+		},
+
 		templateUrl: "paint-template.html"
     	
 	}
@@ -81,13 +95,14 @@ angular.module('hummuse.paint', [])
 			var canvas = element.children().eq(0)[0];
 			var temp_canvas = element.children().eq(1)[0];
 			var dragger = element.children().eq(2)[0];
-			// A temporary canvas is required because we have to continuously redraw a shpae
+			// A temporary canvas is required because we have to continuously redraw a shape
 			// to give live feel of drawing. eg. while drawing a circle, circles of radii 
 			// starting from 0 is drawn. But only upon 'mouseup', the final cirlce is copied to canvas
 			canvas.width = element[0].clientWidth; // offsetWidth include borders and padding
 			canvas.height = element[0].clientHeight;
 			temp_canvas.width = canvas.width;
 			temp_canvas.height = canvas.height;
+
 			// Disable scrolling, zooming etc
 			//temp_canvas.style.touchAction = 'none';
 			//canvas.style.touchAction = 'none';

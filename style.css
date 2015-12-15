@@ -195,15 +195,32 @@ hr{
 	min-height: 100%;
 	background-color: rgba(255,255,255,0.9);
 	z-index: 500;
+	overflow: visible;
+
+	display: block; /* defulat - change when clicked on paint */
 }
 
 #paint-layout {
 	width: 100%; /* mobiles, o/w 750px */
 	padding: 10px 0px;
 	margin: 0 auto;
+	margin-top: 40px;
 	border: 1px solid rgba(200,200,200, 0.9);
 	z-index: 501;
-	background-color: rgba(255,255,255,1);
+	background-color: rgba(255,255,255, 1);
+}
+
+.paint-footer {
+	width: 100%; /* mobiles */
+	margin: 0 auto;
+	margin-top: 10px;
+	z-index: 501;
+	background-color: rgba(255,255,255, 1);
+}
+
+.paint-footer button {
+	float: right;
+	margin-left: 5px;
 }
 
 #paint {
@@ -233,6 +250,10 @@ hr{
 @media (min-width: 767px) { /* Non mobiles */
 	
 	#paint-layout {
+		width: 750px;
+	}
+
+	.paint-footer {
 		width: 750px;
 	}
 

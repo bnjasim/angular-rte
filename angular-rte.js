@@ -6,7 +6,27 @@ angular.module('hummuse.texteditor', ['ui.bootstrap', 'hummuse.paint'])
   }
 }])
 
-.directive('angularRte', function() {
+.controller('mainController', ['$scope', function($scope) {
+
+}])
+
+// Service to share variable b/w paint and texteditor
+.factory('paintService', function() {
+	var paintActivate = false;
+	
+	var getStatus =  function() {
+		return paintActivate;
+	}
+
+	var setStatus = function(val) {
+		paintActivate = val;	
+	}
+	
+	return { getStatus:getStatus, setStatus:setStatus};
+})
+
+
+.directive('angularRte', function(paintService) {
   return {
 	restrict: 'E',
 	replace: true,
@@ -54,6 +74,13 @@ angular.module('hummuse.texteditor', ['ui.bootstrap', 'hummuse.paint'])
 			
 			scope.content = text_area.html();
 				
+		}
+
+		scope.launchPaint = function() {
+			if (!paintService.getStatus()) {
+				paintService.setStatus(true);
+				console.log('text new paint : '+paintService.getStatus())
+			}
 		}
 
 		scope.insertImage = function() {
