@@ -79,7 +79,7 @@ angular.module('hummuse.texteditor', ['ui.bootstrap', 'hummuse.paint'])
 		scope.launchPaint = function() {
 			if (!paintService.getStatus()) {
 				paintService.setStatus(true);
-				console.log('text new paint : '+paintService.getStatus())
+				//console.log('text new paint : '+paintService.getStatus())
 			}
 		}
 

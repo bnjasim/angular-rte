@@ -68,8 +68,11 @@ angular.module('hummuse.paint', [])
 			// just for hiding and showing the paint 
 			scope.$watch(paintService.getStatus, function(val) {
 				console.log('Paint status changed' + val)
-				if (val) 
+				if (val) {
+					// first disable scrolling of the body
+					document.body.classList.add('modal-open');
 					element.css('display', 'block');
+				}
 
 			})
 
