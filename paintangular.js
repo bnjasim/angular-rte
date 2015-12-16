@@ -71,19 +71,19 @@ angular.module('hummuse.paint', [])
 				if (val) {
 					// first disable scrolling of the body
 					document.body.classList.add('modal-open');
-					element.css('display', 'block');
+					element.addClass('paint-open');
 				}
 
 				else {
 
-					element.css('display', 'none');	
+					element.removeClass('paint-open');	
 					document.body.classList.remove('modal-open');
 				}
 
 			});
 
-			// hide the paint now after getting the width
-			element.css('display', 'none'); // link of parent is executed after link of child
+			// hide the paint now after getting the width - no need of this after using visibility
+			//element.css('display', 'none'); // link of parent is executed after link of child
 
 			scope.cancelPaint = function() {
 				// set the paint to close/display:none

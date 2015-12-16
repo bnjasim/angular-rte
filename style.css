@@ -199,7 +199,14 @@ hr{
 	overflow-y:auto;
     overflow-x:hidden;
 
-	display: block; /* defulat none - changed when clicked on paint */
+    opacity: 0; /* transparent just for transition effect when opened */
+	visibility: hidden; /* defulat hidden - changed when clicked on paint */
+	transition: visibility 0.3s, opacity 0.3s linear;
+}
+
+.paint-open {
+	visibility: visible !important;
+	opacity: 1 !important;
 }
 
 #paint-layout {
