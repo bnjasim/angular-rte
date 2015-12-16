@@ -13,6 +13,7 @@ angular.module('hummuse.texteditor', ['ui.bootstrap', 'hummuse.paint'])
 // Service to share variable b/w paint and texteditor
 .factory('paintService', function() {
 	var paintActivate = false;
+	var paintURL = '';
 	
 	var getStatus =  function() {
 		return paintActivate;
@@ -21,8 +22,16 @@ angular.module('hummuse.texteditor', ['ui.bootstrap', 'hummuse.paint'])
 	var setStatus = function(val) {
 		paintActivate = val;	
 	}
+
+	var getURL = function() {
+		return paintURL;
+	}
+
+	var setURL = function(url) {
+		paintURL = url;
+	}
 	
-	return { getStatus:getStatus, setStatus:setStatus};
+	return { getStatus:getStatus, setStatus:setStatus, setURL:setURL, getURL:getURL};
 })
 
 
@@ -83,6 +92,30 @@ angular.module('hummuse.texteditor', ['ui.bootstrap', 'hummuse.paint'])
 			}
 		}
 
+		// Insert Paint - watch for OK in paintangular
+		scope.$watch(paintService.getURL, function(paintURL) {
+			if (paintURL) {
+				var node = document.createElement('img');
+				node.setAttribute('class', 'inserted-image');
+				node.src = paintURL;
+
+				text_area[0].focus();	
+    			var sel = window.getSelection();
+    			if (sel.getRangeAt && sel.rangeCount) {
+    				var range = sel.getRangeAt(0);
+        			range.collapse(false);
+
+        			range.insertNode(node);
+       				range.setStartAfter(node);
+       				range = range.cloneRange();
+           			sel.removeAllRanges();
+           			sel.addRange(range);
+               		
+    			}
+    			
+			}
+		});
+
 		scope.insertImage = function() {
 			var imageURL = window.prompt('Image URL');
 
@@ -91,7 +124,7 @@ angular.module('hummuse.texteditor', ['ui.bootstrap', 'hummuse.paint'])
 				//document.execCommand('insertImage', false, imageURL);
 				text_area[0].focus();	
 				var selection = window.getSelection();
-				range = selection.getRangeAt(0);
+				var range = selection.getRangeAt(0);
 				// the text-area shouldn't be empty, otherwise endContainer is content-editable
 				// nodeType = 1 for ELEMENT_NODE, = 3 for TEXT_NODE etc.	
 				if (!(range.endContainer.nodeType===1 && range.endContainer.getAttribute('class') === 'textarea-div')) 
@@ -145,7 +178,7 @@ angular.module('hummuse.texteditor', ['ui.bootstrap', 'hummuse.paint'])
 				//command = 'formatBlock';
 				//value = 'pre';
 				var selection = window.getSelection();
-				range = selection.getRangeAt(0);
+				var range = selection.getRangeAt(0);
 				// the text-area shouldn't be empty, otherwise endContainer is content-editable
 				// nodeType = 1 for ELEMENT_NODE, = 3 for TEXT_NODE etc.	
 				if (!(range.endContainer.nodeType===1 && range.endContainer.getAttribute('class') === 'textarea-div')) 
@@ -191,7 +224,7 @@ angular.module('hummuse.texteditor', ['ui.bootstrap', 'hummuse.paint'])
 			if (command === 'link') {
 				var sel = window.getSelection();
 				if (sel.getRangeAt && sel.rangeCount) {
-					range = sel.getRangeAt(0);
+					var range = sel.getRangeAt(0);
 					if (range.startContainer === range.endContainer) {
 						command = 'createLink';
 						value = range.toString();

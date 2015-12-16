@@ -67,17 +67,37 @@ angular.module('hummuse.paint', [])
 		link: function(scope, element, attrs) {
 			// just for hiding and showing the paint 
 			scope.$watch(paintService.getStatus, function(val) {
-				console.log('Paint status changed' + val)
+				//console.log('Paint status changed' + val)
 				if (val) {
 					// first disable scrolling of the body
 					document.body.classList.add('modal-open');
 					element.css('display', 'block');
 				}
 
-			})
+				else {
+
+					element.css('display', 'none');	
+					document.body.classList.remove('modal-open');
+				}
+
+			});
 
 			// hide the paint now after getting the width
 			element.css('display', 'none'); // link of parent is executed after link of child
+
+			scope.cancelPaint = function() {
+				// set the paint to close/display:none
+				// remove modal-open class
+				paintService.setStatus(false);
+			}
+
+			scope.okPaint = function() {
+				// close the paint, but copy the image to the text editor  as well
+				var canvas = element.find('canvas')[0]; // jqlite find only with tags, no id/class
+				paintService.setURL(canvas.toDataURL()); 
+
+				paintService.setStatus(false);	
+			}
 
 		},
 

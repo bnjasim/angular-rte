@@ -213,11 +213,13 @@ hr{
 }
 
 .paint-footer {
-	width: 100%; /* mobiles */
+	width: 95%; /* mobiles */
 	margin: 0 auto;
 	margin-top: 10px;
 	z-index: 501;
 	background-color: rgba(255,255,255, 1);
+	overflow: hidden;
+	padding-right: 10px;
 }
 
 .paint-footer button {
@@ -252,10 +254,6 @@ hr{
 @media (min-width: 767px) { /* Non mobiles */
 	
 	#paint-layout {
-		width: 750px;
-	}
-
-	.paint-footer {
 		width: 750px;
 	}
 
